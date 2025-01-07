@@ -38,16 +38,16 @@ export function AppLayout() {
   return (
     <>
       <div className="grid_container min-h-full w-full antialiased">
-        <div className="header bg-zinc-700">
+        <div className="header w-full">
           <HeaderViewModel />
         </div>
-        <div className="menu bg-zinc-800">
+        <div className="menu" >
           <SideBarMenuViewModal />
         </div>
-        <div className="content bg-zinc-400 flex flex-1 flex-col gap-4 p-8 pt-6">
+        <div className="content bg-secondary flex flex-1 flex-col gap-4 p-8 pt-6">
           <Outlet />
         </div>
-        <div className="bg-zinc-600 footer">Footer</div>
+        <div className="bg-primary border-t-4 border-t-thertiary footer">Footer</div>
       </div>
     </>
   );
