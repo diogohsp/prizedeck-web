@@ -3,8 +3,11 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import { HeaderViewModel } from "@/components/header/HeaderViewModel";
+import { SideBarMenuViewModal } from "@/components/sidebar-menu/SideBarMenuViewModel";
 
 import { api } from "@/lib/axios";
+
+import "./app.css";
 
 export function AppLayout() {
   const navigate = useNavigate();
@@ -33,11 +36,19 @@ export function AppLayout() {
   }, [navigate]);
 
   return (
-    <div className="flex min-h-screen w-[100dvw] flex-col antialiased">
-      <HeaderViewModel />
-      <div className="flex flex-1 flex-col gap-4 p-8 pt-6">
-        <Outlet />
+    <>
+      <div className="grid_container min-h-full w-full antialiased">
+        <div className="header bg-zinc-700">
+          <HeaderViewModel />
+        </div>
+        <div className="menu bg-zinc-800">
+          <SideBarMenuViewModal />
+        </div>
+        <div className="content bg-zinc-400 flex flex-1 flex-col gap-4 p-8 pt-6">
+          <Outlet />
+        </div>
+        <div className="bg-zinc-600 footer">Footer</div>
       </div>
-    </div>
+    </>
   );
 }

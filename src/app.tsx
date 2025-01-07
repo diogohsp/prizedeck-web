@@ -9,14 +9,16 @@ import { router } from "./routes";
 
 export const App = () => {
   return (
-    <HelmetProvider>
-      <ThemeProvider defaultTheme="system" storageKey="prize-deck-theme">
-        <Helmet titleTemplate="%s | Prize Deck" />
-        <Toaster richColors />
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
-      </ThemeProvider>
-    </HelmetProvider>
+    <div className="min-w-full">
+      <HelmetProvider>
+        <ThemeProvider defaultTheme="system" storageKey="prize-deck-theme">
+          <Helmet titleTemplate="%s | Prize Deck" />
+          <Toaster richColors />
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+        </ThemeProvider>
+      </HelmetProvider>
+    </div>
   );
 };
