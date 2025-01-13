@@ -1,0 +1,26 @@
+.grid_container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-areas:
+    "menu header"
+    "menu content"
+    "footer footer";
+    grid-template-columns: 200px 1fr ;
+    grid-template-rows: auto 1fr auto;
+}
+
+.header {
+  grid-area: header;
+}
+
+.menu {
+  grid-area: menu;
+}
+
+.content {
+  grid-area: content;
+}
+
+.footer {
+  grid-area: footer;
+}

@@ -1,3 +1,3 @@
 export interface HeaderViewProps {
-    navigate: (path: string) => void;
+    navigate(path: string): void;
 }
