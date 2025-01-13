@@ -6,7 +6,7 @@ export const PrizesViewModel = () => {
 
   return (
     <div>
-      <PrizeView {...prizeModel}/>
+      <PrizeView {...prizeModel} />
     </div>
   );
 };

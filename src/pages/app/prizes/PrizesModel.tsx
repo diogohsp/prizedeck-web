@@ -1,8 +1,13 @@
-import { helloWorld } from "@/api/hello_world/hello_world";
+import { listRegisteredPrizes } from "@/api/prizes/list-registered-prizes";
 import { useQuery } from "@tanstack/react-query";
 
 export const usePrizeModel = () => {
-  const { data } = useQuery({ queryKey: ["hello_world"], queryFn: helloWorld });
+  const { data } = useQuery({
+    queryKey: ["list-registered-prizes"],
+    queryFn: listRegisteredPrizes,
+  });
 
-  return {data};
+  console.log('func', data?.listRegisteredPrizes);
+
+  return { listRegisteredPrizes: data?.listRegisteredPrizes };
 };
