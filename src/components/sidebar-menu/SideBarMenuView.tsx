@@ -31,10 +31,10 @@ export const SideBarMenuView = (props: SideBarMenuViewProps) => {
             </li>
             <li
               className="cursor-pointer text-lg flex items-center px-3 rounded-xl justify-between gap-x-3 hover:text-thertiary group"
-              onClick={() => navigate("/prize")}
+              onClick={() => navigate("/prizes")}
             >
               <LuGift size={20} />
-              <p className="text-lg">Prize</p>
+              <p className="text-lg">Prizes</p>
               <MdOutlineArrowDropDown
                 className="group-hover:rotate-90"
                 size={30}

@@ -1,4 +1,3 @@
-
 import { HeaderViewProps } from "./InterfaceHeaderViewProps";
 
 export const HeaderView = (props: HeaderViewProps) => {
