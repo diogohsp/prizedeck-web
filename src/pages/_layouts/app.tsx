@@ -47,7 +47,9 @@ export function AppLayout() {
         <div className="content bg-secondary flex flex-1 flex-col gap-4 p-8 pt-6">
           <Outlet />
         </div>
-        <div className="bg-primary border-t-4 border-t-thertiary footer">Footer</div>
+        <div className="bg-primary border-t-4 border-t-thertiary min-h-10 footer flex items-center justify-center">
+          <i className="text-sm">Developed by <a href="https://www.linkedin.com/in/diogohsp" target="_blank" rel="noopener noreferrer">Diogo</a> © 2024</i>
+        </div>
       </div>
     </>
   );

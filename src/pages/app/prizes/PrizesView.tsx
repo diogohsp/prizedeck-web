@@ -1,22 +1,32 @@
 import { Prize } from "@/api/interfaces";
+import { ResourceNotFoundViewModel } from "@/components/resource-not-found/ResourceNotFoundViewModel";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect } from "react";
 
 interface PrizeViewProps {
   listRegisteredPrizes: Prize[] | undefined;
+  isPrizeModelLoading: boolean;
 }
 
 export const PrizeView = (props: PrizeViewProps) => {
-  const { listRegisteredPrizes } = props;
+  const { listRegisteredPrizes, isPrizeModelLoading } = props;
 
   useEffect(() => {
     console.log("teste: ", listRegisteredPrizes);
   }, [listRegisteredPrizes]);
 
+  if (isPrizeModelLoading) {
+    return (
+      <>
+        <Skeleton className="w-full h-[40px] rounded-full" />
+      </>
+    );
+  }
+
   return (
     <section>
-      <h1 className="pb-10">Registered Prizes</h1>
       <div>
-        {listRegisteredPrizes && listRegisteredPrizes.length > 0 ? (
+        {listRegisteredPrizes && listRegisteredPrizes.length > 0 && (
           <div className="bg-thertiary border-l-8 border-primary p-3 rounded-md">
             {listRegisteredPrizes.map((prize) => (
               <div className="flex gap-x-3">
@@ -37,9 +47,11 @@ export const PrizeView = (props: PrizeViewProps) => {
               </div>
             ))}
           </div>
-        ) : (
-          <div>nao tem</div>
         )}
+        {listRegisteredPrizes && listRegisteredPrizes.length == 0 && (
+          <i>Nenhum prêmio registrado...</i>
+        )}
+        {!listRegisteredPrizes && <ResourceNotFoundViewModel />}
       </div>
     </section>
   );
