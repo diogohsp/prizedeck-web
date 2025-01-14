@@ -7,7 +7,13 @@ export const usePrizeModel = () => {
     queryFn: listRegisteredPrizes,
   });
 
-  console.log('func', data?.listRegisteredPrizes);
+  const deletePrizeFn = () => {
+    console.log("Deleted");
+  };
 
-  return { listRegisteredPrizes: data?.listRegisteredPrizes, isPrizeModelLoading };
+  return {
+    listRegisteredPrizes: data?.listRegisteredPrizes,
+    isPrizeModelLoading,
+    deletePrizeFn,
+  };
 };

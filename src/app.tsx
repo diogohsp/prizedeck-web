@@ -9,9 +9,9 @@ import { router } from "./routes";
 
 export const App = () => {
   return (
-    <div className="min-w-full">
+    <div className="min-w-full overflow-y-hidden">
       <HelmetProvider>
-        <ThemeProvider defaultTheme="system" storageKey="prize-deck-theme">
+        <ThemeProvider defaultTheme="dark" storageKey="prize-deck-theme">
           <Helmet titleTemplate="%s | Prize Deck" />
           <Toaster richColors />
           <QueryClientProvider client={queryClient}>
