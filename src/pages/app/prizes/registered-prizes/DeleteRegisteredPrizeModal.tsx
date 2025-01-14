@@ -14,7 +14,7 @@ interface DelePrizeModalProps {
   deleteFn(): void;
 }
 
-export const DeletePrizeModal = ({
+export const DeleteRegisteredPrizeModal = ({
   className,
   deleteFn,
 }: DelePrizeModalProps) => {

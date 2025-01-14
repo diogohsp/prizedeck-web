@@ -7,10 +7,10 @@ import {
 } from "@/components/ui/base-pill/BasePìllView";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect } from "react";
-import { DeletePrizeModal } from "./DeletePrizeModal";
-import { PrizeViewProps } from "./InterfacePrizeViewProps";
+import { DeleteRegisteredPrizeModal } from "./DeleteRegisteredPrizeModal";
+import { PrizeViewProps } from "./InterfaceRegisteredPrizeViewProps";
 
-export const PrizeView = (props: PrizeViewProps) => {
+export const RegisteredPrizesView = (props: PrizeViewProps) => {
   const { listRegisteredPrizes, isPrizeModelLoading, deletePrizeFn } = props;
 
   useEffect(() => {
@@ -55,12 +55,17 @@ export const PrizeView = (props: PrizeViewProps) => {
                   </BasePill>
                 </div>
 
-                <DeletePrizeModal
+                <DeleteRegisteredPrizeModal
                   className=""
                   deleteFn={deletePrizeFn}
                 />
               </div>
             ))}
+            <BasePill className="flex justify-center bg-primary border-0 cursor-pointer hover:bg-green-950">
+              <BasePillFirstCol>
+                <p className="uppercase">Register a Prize</p>
+              </BasePillFirstCol>
+            </BasePill>
           </>
         )}
         {listRegisteredPrizes && listRegisteredPrizes.length == 0 && (

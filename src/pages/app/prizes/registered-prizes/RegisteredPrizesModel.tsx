@@ -1,7 +1,7 @@
 import { listRegisteredPrizes } from "@/api/prizes/list-registered-prizes";
 import { useQuery } from "@tanstack/react-query";
 
-export const usePrizeModel = () => {
+export const useRegisteredPrizeModel = () => {
   const { data, isLoading: isPrizeModelLoading } = useQuery({
     queryKey: ["list-registered-prizes"],
     queryFn: listRegisteredPrizes,

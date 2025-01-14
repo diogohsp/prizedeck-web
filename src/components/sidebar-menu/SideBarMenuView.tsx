@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { SideBarMenuViewProps } from "./InterfaceSideBarMenuViewProps";
-import { LuGift } from "react-icons/lu";
 import { LuHouse } from "react-icons/lu";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { IoIosArrowDropright } from "react-icons/io";
+import { PrizesDropDown } from "./prizes-dropdown/PrizesDropDown";
 
 export const SideBarMenuView = (props: SideBarMenuViewProps) => {
   const { navigate } = props;
@@ -34,34 +34,24 @@ export const SideBarMenuView = (props: SideBarMenuViewProps) => {
       <nav className="flex justify-start px-1 py-3">
         <ul className="flex  flex-col gap-y-4 pt-3">
           <li
-            className="cursor-pointer flex items-center justify-between gap-x-3 px-3 rounded-xl hover:text-thertiary group"
+            className="cursor-pointer px-3 rounded-xl hover:text-thertiary"
             onClick={() => navigate("/")}
           >
-            <LuHouse className={isCollapsed ? "size-7" : "size-6"} />
-            {!isCollapsed && (
-              <>
-                <p className="text-lg">Home</p>
-                <MdOutlineArrowDropDown
-                  className="group-hover:rotate-90"
-                  size={30}
-                />
-              </>
-            )}
+            <div className="flex items-center justify-start gap-x-3 group">
+              <LuHouse className={isCollapsed ? "size-7" : "size-6"} />
+              {!isCollapsed && (
+                <div className="flex justify-between items-center">
+                  <p className="text-lg">Home</p>
+                  <MdOutlineArrowDropDown
+                    className="rotate-90 group-hover:rotate-0 transition-all duration-300"
+                    size={30}
+                  />
+                </div>
+              )}
+            </div>
           </li>
-          <li
-            className="cursor-pointer text-lg flex items-center px-3 rounded-xl justify-between gap-x-3 hover:text-thertiary group"
-            onClick={() => navigate("/prizes")}
-          >
-            <LuGift className={isCollapsed ? "size-7" : "size-6"} />
-            {!isCollapsed && (
-              <>
-                <p className="text-lg">Prizes</p>
-                <MdOutlineArrowDropDown
-                  className="group-hover:rotate-90"
-                  size={30}
-                />
-              </>
-            )}
+          <li className="cursor-pointer px-3 rounded-xl">
+            <PrizesDropDown navigate={navigate} isCollapsed={isCollapsed} />
           </li>
         </ul>
       </nav>
