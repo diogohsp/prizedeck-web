@@ -13,7 +13,12 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { RegisterNewPrizeModal } from "./RegisterNewPrizeModal";
 
 export const RegisteredPrizesView = (props: PrizeViewProps) => {
-  const { listRegisteredPrizes, isPrizeModelLoading, deletePrizeFn, createPrize } = props;
+  const {
+    listRegisteredPrizes,
+    isPrizeModelLoading,
+    deletePrizeFn,
+    createPrize,
+  } = props;
 
   useEffect(() => {
     console.log("teste: ", listRegisteredPrizes);
@@ -63,12 +68,6 @@ export const RegisteredPrizesView = (props: PrizeViewProps) => {
                 />
               </div>
             ))}
-            <BasePill className="flex justify-center items-center h-12 bg-transparent border-thertiary border-2 cursor-pointer hover:bg-green-950 w-64 m-auto">
-              <BasePillFirstCol>
-                <p className="uppercase self-center">Register a Prize</p>
-                <IoIosAddCircleOutline size={28} />
-              </BasePillFirstCol>
-            </BasePill>
             <RegisterNewPrizeModal createPrize={() => createPrize} />
           </>
         )}

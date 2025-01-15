@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
-interface BasePill {
+interface BasePill extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   children: ReactNode;
 }
 
-export const BasePill = ({ children, className }: BasePill) => {
+export const BasePill = ({ children, className, ...props }: BasePill) => {
   return (
     <>
       <div
@@ -14,6 +14,7 @@ export const BasePill = ({ children, className }: BasePill) => {
           "flex gap-x-3 bg-thertiary p-3 rounded-pattern",
           className
         )}
+        {...props}
       >
         {children}
       </div>

@@ -1,4 +1,9 @@
+import React, { useReducer } from "react";
 import { Prize } from "@/api/interfaces";
+import {
+  BasePill,
+  BasePillFirstCol,
+} from "@/components/ui/base-pill/BasePìllView";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,12 +16,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { useReducer } from "react";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 interface RegisterNewPrizeProps {
   className?: string;
-  // eslint-disable-next-line no-empty-pattern
-  createPrize({}: Prize): void;
+  createPrize(prize: Prize): void;
 }
 
 const initialState = {
@@ -36,7 +40,7 @@ const initialState = {
 type State = typeof initialState;
 
 type Action =
-  | { type: "UPDATE_FIELD"; field: string; value: string }
+  | { type: "UPDATE_FIELD"; field: string; value: string | number }
   | {
       type: "SET_ERRORS";
       errors: { code: string; name: string; quantity: string };
@@ -77,11 +81,11 @@ export const RegisterNewPrizeModal = ({
     }
 
     if (code.length < 1) {
-      errors.code = "o codigo deve ser maior de 0 digitos";
+      errors.code = "O código deve ter mais de 0 dígitos.";
     }
 
     if (quantity <= 0) {
-      errors.quantity = "nao é possivel adicionar 0 a quantidade";
+      errors.quantity = "A quantidade deve ser maior que zero.";
     }
 
     dispatch({ type: "SET_ERRORS", errors });
@@ -99,20 +103,26 @@ export const RegisterNewPrizeModal = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    dispatch({ type: "UPDATE_FIELD", field: name, value });
+    const newValue = name === "quantity" ? parseInt(value, 10) || 0 : value; // Converte "quantity" para número
+    dispatch({ type: "UPDATE_FIELD", field: name, value: newValue });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={cn(className)}>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="outline">Edit Profile</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Create new prize</DialogTitle>
-            </DialogHeader>
+    <div className={cn(className)}>
+      <Dialog>
+        <DialogTrigger asChild>
+          <BasePill className="flex justify-center items-center h-12 bg-transparent border-thertiary border-2 cursor-pointer hover:bg-green-950 w-64 m-auto">
+            <BasePillFirstCol>
+              <p className="uppercase self-center">Register a Prize</p>
+              <IoIosAddCircleOutline size={28} />
+            </BasePillFirstCol>
+          </BasePill>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Create new prize</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={() => handleSubmit}>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="code" className="text-right">
@@ -120,6 +130,7 @@ export const RegisterNewPrizeModal = ({
                 </Label>
                 <Input
                   id="code"
+                  name="code"
                   value={state.formData.code}
                   onChange={handleChange}
                   className="col-span-3"
@@ -132,6 +143,7 @@ export const RegisterNewPrizeModal = ({
                 </Label>
                 <Input
                   id="name"
+                  name="name"
                   value={state.formData.name}
                   onChange={handleChange}
                   className="col-span-3"
@@ -144,6 +156,7 @@ export const RegisterNewPrizeModal = ({
                 </Label>
                 <Input
                   id="quantity"
+                  name="quantity"
                   value={state.formData.quantity}
                   onChange={handleChange}
                   className="col-span-3"
@@ -151,12 +164,12 @@ export const RegisterNewPrizeModal = ({
                 {state.errors.quantity && <p>{state.errors.quantity}</p>}
               </div>
             </div>
-            <DialogFooter>
-              <Button type="submit">Save changes</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </div>
-    </form>
+          </form>
+          <DialogFooter>
+            <Button type="submit">Create</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
