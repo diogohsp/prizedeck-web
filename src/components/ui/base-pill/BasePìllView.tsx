@@ -11,7 +11,7 @@ export const BasePill = ({ children, className }: BasePill) => {
     <>
       <div
         className={cn(
-          "flex gap-x-3 bg-thertiary border-l-8 border-r-8 border-b-4 border-b-quaternary border-primary p-3 rounded-pattern",
+          "flex gap-x-3 bg-thertiary p-3 rounded-pattern",
           className
         )}
       >

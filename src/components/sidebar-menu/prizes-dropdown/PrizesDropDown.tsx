@@ -1,7 +1,7 @@
 import { LuGift } from "react-icons/lu";
 import { MdOutlineArrowDropDown } from "react-icons/md";
-import { LuPackageCheck } from "react-icons/lu";
 import { useRef, useState } from "react";
+import { RegisteredPrizes } from "./prizes-routes/RegisteredPrizes";
 
 interface PrizesDropDownProps {
   isCollapsed: boolean;
@@ -13,7 +13,7 @@ interface PrizesDropDownHeaderProps extends PrizesDropDownProps {
   setDropDownCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface PrizesDropDownContentProps extends PrizesDropDownProps {
+export interface PrizesDropDownContentProps extends PrizesDropDownProps {
   isDropDownCollapsed: boolean;
   setDropDownCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -27,8 +27,8 @@ export const PrizesDropDown = (props: PrizesDropDownProps) => {
     <div className="flex flex-col items-start">
       <PrizesDropDownHeader
         isCollapsed={isCollapsed}
-        isDropDownCollapsed={isDropDownCollapsed}
         navigate={navigate}
+        isDropDownCollapsed={isDropDownCollapsed}
         setDropDownCollapsed={setDropDownCollapsed}
       />
       <PrizesDropDownContent
@@ -66,7 +66,8 @@ export const PrizesDropDownHeader = (props: PrizesDropDownHeaderProps) => {
 };
 
 export const PrizesDropDownContent = (props: PrizesDropDownContentProps) => {
-  const { isCollapsed, isDropDownCollapsed, navigate } = props;
+  const { isCollapsed, isDropDownCollapsed, navigate, setDropDownCollapsed } =
+    props;
 
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -79,16 +80,13 @@ export const PrizesDropDownContent = (props: PrizesDropDownContentProps) => {
           : "0px",
       }}
     >
-      <div
-        className={`flex justify-between items-center gap-x-2 text-lg pt-2 hover:text-thertiary ${
-          isCollapsed ? "" : "pl-2"
-        }`}
-        ref={contentRef}
-        onClick={() => navigate("/prizes/registered-prizes")}
-      >
-        <LuPackageCheck size={24} />
-        {!isCollapsed && <p>Registered Prizes</p>}
-      </div>
+      <RegisteredPrizes
+        isCollapsed={isCollapsed}
+        navigate={navigate}
+        contentRef={contentRef}
+        isDropDownCollapsed={isDropDownCollapsed}
+        setDropDownCollapsed={setDropDownCollapsed}
+      />
     </div>
   );
 };
