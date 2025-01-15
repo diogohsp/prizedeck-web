@@ -1,13 +1,19 @@
 import { listRegisteredPrizes } from "@/api/prizes/list-registered-prizes";
 import { useQuery } from "@tanstack/react-query";
 
-export const usePrizeModel = () => {
+export const useRegisteredPrizeModel = () => {
   const { data, isLoading: isPrizeModelLoading } = useQuery({
     queryKey: ["list-registered-prizes"],
     queryFn: listRegisteredPrizes,
   });
 
-  console.log('func', data?.listRegisteredPrizes);
+  const deletePrizeFn = () => {
+    console.log("Deleted");
+  };
 
-  return { listRegisteredPrizes: data?.listRegisteredPrizes, isPrizeModelLoading };
+  return {
+    listRegisteredPrizes: data?.listRegisteredPrizes,
+    isPrizeModelLoading,
+    deletePrizeFn,
+  };
 };
