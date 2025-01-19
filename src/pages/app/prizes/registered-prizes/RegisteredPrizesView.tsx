@@ -9,7 +9,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect } from "react";
 import { DeleteRegisteredPrizeModal } from "./DeleteRegisteredPrizeModal";
 import { PrizeViewProps } from "./InterfaceRegisteredPrizeViewProps";
-import { IoIosAddCircleOutline } from "react-icons/io";
 import { RegisterNewPrizeModal } from "./RegisterNewPrizeModal";
 
 export const RegisteredPrizesView = (props: PrizeViewProps) => {
@@ -17,7 +16,7 @@ export const RegisteredPrizesView = (props: PrizeViewProps) => {
     listRegisteredPrizes,
     isPrizeModelLoading,
     deletePrizeFn,
-    createPrize,
+    createNewPrize,
   } = props;
 
   useEffect(() => {
@@ -68,7 +67,7 @@ export const RegisteredPrizesView = (props: PrizeViewProps) => {
                 />
               </div>
             ))}
-            <RegisterNewPrizeModal createPrize={() => createPrize} />
+            <RegisterNewPrizeModal createNewPrize={createNewPrize} />
           </>
         )}
         {listRegisteredPrizes && listRegisteredPrizes.length == 0 && (

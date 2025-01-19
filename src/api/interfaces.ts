@@ -1,5 +1,5 @@
 export interface Prize {
-    code: string;
+    code?: string;
     name: string;
     id?: string;
     quantity: number;

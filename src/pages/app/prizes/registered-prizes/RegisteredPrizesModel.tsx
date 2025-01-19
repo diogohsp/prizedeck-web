@@ -17,8 +17,8 @@ export const useRegisteredPrizeModel = () => {
   };
 
   const createNewPrize = (data: Prize) => {
+    console.log('funcao model')
     createPrizeMutate({
-      code: data.code,
       name: data.name,
       quantity: data.quantity,
     });

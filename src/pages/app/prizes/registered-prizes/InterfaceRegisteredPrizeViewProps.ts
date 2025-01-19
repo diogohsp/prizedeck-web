@@ -4,6 +4,6 @@ export interface PrizeViewProps {
     listRegisteredPrizes: Prize[] | undefined;
     isPrizeModelLoading: boolean;
     deletePrizeFn():void
-    createPrize(data: Prize): void
+    createNewPrize(data: Prize): void
     isCreatePrizePending: boolean
   }
