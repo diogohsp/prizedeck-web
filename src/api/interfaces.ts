@@ -4,3 +4,8 @@ export interface Prize {
     id?: string;
     quantity: number;
 }
+
+export interface SignIn {
+    email: string,
+    password: string
+}

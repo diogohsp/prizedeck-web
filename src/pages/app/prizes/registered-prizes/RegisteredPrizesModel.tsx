@@ -6,7 +6,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 export const useRegisteredPrizeModel = () => {
   const { data, isLoading: isPrizeModelLoading } = useQuery({
     queryKey: ["list-registered-prizes"],
-    queryFn: listRegisteredPrizes,
+    queryFn: listRegisteredPrizes
   });
 
   const { mutateAsync: createPrizeMutate, isPending: isCreatePrizePending } =

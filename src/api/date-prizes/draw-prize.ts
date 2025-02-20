@@ -1,6 +1,10 @@
 import { api } from "@/lib/axios";
 
-export async function drawPrize(id: string) {
+interface drawPrizeProps {
+    id: string
+}
+
+export async function drawPrize({ id }: drawPrizeProps) {
     const response = await api.patch('/drawPrize', 
         id,
         

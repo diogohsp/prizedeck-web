@@ -4,6 +4,8 @@ import { NotFound } from "./pages/404";
 import { HomeViewModel } from "./pages/app/home/HomeViewModel";
 import { PrizesViewModel } from "./pages/app/prizes/registered-prizes/RegisteredPrizesViewModel";
 import { SlotMachine } from "./pages/app/slot-machine/SlotMachine.tsx";
+import { SignIn } from "./pages/auth/sign-in.tsx";
+import { AuthLayout } from "./pages/_layouts/auth.tsx";
 
 // import { AuthLayout } from "./pages/_layouts/auth";
 // import { SignIn } from "./pages/auth/"
@@ -29,12 +31,12 @@ export const router = createBrowserRouter([
 
   {
     path: "/",
-    // element: <AuthLayout/>
+    element: <AuthLayout />,
     children: [
-      // {
-      //   path: "sign-in",
-      //   element: <SignIn />,
-      // },
+      {
+        path: "sign-in",
+        element: <SignIn />,
+      },
       // {
       //   path: "sign-up",
       //   element: <SignUp />,

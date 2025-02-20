@@ -2,12 +2,23 @@ import { useState } from "react";
 import SlotMachineGif from "@/assets/slot-machine-png.gif";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useMutation } from "@tanstack/react-query";
+import { drawPrize } from "@/api/date-prizes/draw-prize";
 
 export const SlotMachine = () => {
   const [isSpinning, setIsSpinning] = useState(false);
 
-  const startSpin = () => {
+  const handleSpin = () => {
     setIsSpinning(!isSpinning);
+  };
+
+  const { mutateAsync: drawPrizeMutate, isPending: isCreatePrizePending } =
+    useMutation({ mutationFn: drawPrize });
+
+  const drawPrizeFn = (id: string) => {
+    console.log("funcao model");
+    handleSpin();
+    drawPrizeMutate({ id });
   };
 
   return (
@@ -18,7 +29,7 @@ export const SlotMachine = () => {
         animate={isSpinning ? { scale: 1.2 } : { rotate: 0, scale: 1 }}
         transition={{ duration: 0.8, ease: "backInOut" }}
       />
-      <Button className="" onClick={startSpin}>
+      <Button className="" onClick={() => drawPrizeFn("1")}>
         Girar
       </Button>
     </div>
