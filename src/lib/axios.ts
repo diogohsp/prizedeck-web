@@ -11,6 +11,7 @@ export const api = axios.create({
 api.interceptors.request.use(
     (config) => {
         const token = getToken();
+        console.log('terste: ', token)
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
